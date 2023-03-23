@@ -1,12 +1,44 @@
-import java.util.*; 
-class reverse {   
-public static void main(String[] args) {     
-Scanner sc = new Scanner(System.in);       
-String str= sc.nextLine();        
-String reversedString = "";   
-for(int i = str.length()-1; i>=0; i--){       
-reversedString = reversedString + str.charAt(i);     
-}          
-System.out.println(reversedString);   
+ class ReverseIterator<T> implements Iterator<T>, Iterable<T> {
+
+    private final List<T> list;
+    private int position;
+
+    public ReverseIterator(List<T> list) {
+        this.list = list;
+        this.position = list.size() - 1;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return this;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return position >= 0;
+    }
+
+    @Override
+    public T next() {
+        return list.get(position--);
+    }
+
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
+
+
+{
+
+List<String> list = new ArrayList<String>();[
+list.add("A");
+list.add("B");
+list.add("C");
+list.add("D");
+list.add("E");
 }
-} 
+
+for (String s : new ReverseIterator<String>(list)) {
+    System.out.println(s);
+}
